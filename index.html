@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>PRECIFICAÇÃO DE PRODUTOS • V9 Informática Ltda</title>
+  <style>
+    :root {
+      --bg0: #f0f4f8;
+      --bg1: #e4ecf4;
+      --card: #ffffff;
+      --cardHd: #f7f9fb;
+      --pillBg: #e8edf3;
+      --stroke: #d0dae6;
+      --txt: #1a2332;
+      --muted: #6b7a92;
+      --accent: #3b5bdb;
+      --accent2: #0ea5a0;
+      --danger: #d92d4b;
+      --ok: #0d8a4f;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --r: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+        Cantarell, Noto Sans, Helvetica, Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--txt);
+      background: linear-gradient(160deg, var(--bg0) 0%, var(--bg1) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 26px 16px 40px;
+    }
+
+    .top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      display: grid;
+      gap: 2px;
+      line-height: 1.1;
+    }
+
+    .brand strong {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 5px rgba(59, 91, 219, 0.12);
+    }
+
+    .brand span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill,
+    .btn {
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--pillBg);
+      font-size: 13px;
+    }
+
+    .pill {
+      background: var(--pillBg);
+      color: var(--txt);
+    }
+
+    .pill b {
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .btn {
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      background: linear-gradient(135deg, #3b5bdb, #4c70f0);
+      color: #fff;
+      border-color: #3b5bdb;
+      cursor: pointer;
+      user-select: none;
+      transition: filter 0.15s;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--txt);
+      border-color: var(--stroke);
+      font-weight: 600;
+    }
+
+    .btn.secondary:hover {
+      background: var(--pillBg);
+      filter: none;
+    }
+
+    .btn.danger {
+      background: linear-gradient(135deg, #d92d4b, #f04060);
+      border-color: #d92d4b;
+      color: #fff;
+    }
+
+    .hero {
+      padding: 18px 10px 10px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(22px, 2.6vw, 36px);
+      letter-spacing: -0.5px;
+      color: var(--txt);
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 76ch;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hd {
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: var(--cardHd);
+    }
+
+    .hd h2 {
+      margin: 0;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .bd {
+      padding: 18px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: grid;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--stroke);
+      background: #fafbfc;
+      color: var(--txt);
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #3b5bdb;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .help {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kpi {
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 14px;
+      background: var(--cardHd);
+    }
+
+    .kpi .t {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .kpi .v {
+      margin-top: 6px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: var(--txt);
+    }
+
+    .kpi .s {
+      margin-top: 2px;
+      font-size: 12px;
+      font-family: var(--mono);
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--stroke);
+      font-size: 13px;
+    }
+
+    th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--muted);
+      text-align: left;
+      background: var(--cardHd);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .r {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mono {
+      font-family: var(--mono);
+    }
+
+    .notice {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--stroke);
+      background: var(--cardHd);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .notice[data-kind="danger"] {
+      background: #fef1f3;
+      border-color: #f5c2cb;
+      color: #8b1a2e;
+    }
+
+    .notice[data-kind="ok"] {
+      background: #edfaf3;
+      border-color: #a8e6c8;
+      color: #0d6b3e;
+    }
+
+    .list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .item {
+      padding: 10px 12px;
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      background: var(--cardHd);
+      cursor: pointer;
+      transition: background 0.12s, border-color 0.12s;
+    }
+
+    .item:hover {
+      background: #eef1fb;
+      border-color: #b0bcef;
+    }
+
+    .item[aria-current="true"] {
+      border-color: #3b5bdb;
+      background: #eef1fb;
+    }
+
+    .item strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .item span {
+      display: block;
+      font-size: 12px;
+      font-family: var(--mono);
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    footer {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px 20px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    footer .mini {
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div class="brand">
+        <strong><span class="dot" aria-hidden="true"></span> V9 Informática Ltda</strong>
+        <span>Destaque • Suporte e consultoria • (37) 4141-0341</span>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;">
+        <div class="pill" title="Contato">
+          <span>Whats/Telefone</span>
+          <b>(37) 4141-0341</b>
+        </div>
+        <a class="btn" href="tel:+553741410341">Ligar agora</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>PRECIFICAÇÃO DE PRODUTOS</h1>
+      <p>
+        Cadastre produto, informe custo, taxas de cartão, despesas fixas/variáveis (% sobre o custo), impostos federais e o percentual
+        de lucro desejado. O sistema calcula o preço final de venda e demonstra os cálculos. Os dados ficam salvos no
+        seu navegador (na sua própria máquina). — <strong>Apenas um auxílio: confira o preço final com seu contador.</strong>
+      </p>
+    </section>
+
+    <main class="grid">
+      <section class="card" aria-label="Cadastro">
+        <div class="hd">
+          <h2>Cadastro do produto</h2>
+          <div class="actions">
+            <button class="btn secondary" id="btnNovo" type="button">Novo</button>
+            <button class="btn" id="btnSalvar" type="button">Salvar</button>
+            <button class="btn danger" id="btnExcluir" type="button">Excluir</button>
+          </div>
+        </div>
+        <div class="bd" style="display:grid; gap:12px;">
+          <div class="row">
+            <label>
+              Nome do produto
+              <input id="produtoNome" type="text" placeholder="Ex.: Mouse gamer" autocomplete="off" />
+            </label>
+            <label>
+              SKU / Código (opcional)
+              <input id="produtoSku" type="text" placeholder="Ex.: MOU-001" autocomplete="off" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Preço de custo (R$)
+              <input id="custo" type="text" inputmode="decimal" placeholder="0,00" />
+            </label>
+            <label>
+              Despesas fixas (%) <span class="help">(sobre o custo)</span>
+              <input id="fixas" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Despesas variáveis (%) <span class="help">(sobre o custo)</span>
+              <input id="variaveis" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+            <label>
+              Impostos federais (%) <span class="help">(sobre o preço de venda)</span>
+              <input id="impostos" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Lucro desejado (%) <span class="help">(margem sobre a venda)</span>
+              <input id="lucro" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+            <label>
+              Forma de pagamento
+              <select id="pagamento">
+                <option value="pix">Dinheiro / Pix (0%)</option>
+                <option value="debito">Cartão de débito</option>
+                <option value="credito">Cartão de crédito (à vista)</option>
+                <option value="parcelado">Crédito parcelado</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Taxa do débito (%)
+              <input id="taxaDebito" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+            <label>
+              Taxa do crédito à vista (%)
+              <input id="taxaCredito" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              Taxa do parcelado (%)
+              <input id="taxaParcelado" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
+            </label>
+            <label>
+              Observações (opcional)
+              <textarea id="obs" rows="2" placeholder="Ex.: embalagem, frete, comissões..."></textarea>
+            </label>
+          </div>
+          <datalist id="pctSug">
+            <option value="0"></option>
+            <option value="0,5"></option>
+            <option value="1"></option>
+            <option value="2"></option>
+            <option value="3"></option>
+            <option value="4"></option>
+            <option value="5"></option>
+            <option value="8"></option>
+            <option value="10"></option>
+            <option value="12"></option>
+            <option value="15"></option>
+            <option value="20"></option>
+            <option value="25"></option>
+            <option value="30"></option>
+          </datalist>
+          <div class="notice" id="status" data-kind="ok" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <aside class="card" aria-label="Resultado">
+        <div class="hd">
+          <h2>Resultado e produtos salvos</h2>
+          <div class="pill" title="Armazenamento local">
+            <span>Salvo</span>
+            <b>LocalStorage</b>
+          </div>
+        </div>
+        <div class="bd" style="display:grid; gap:12px;">
+          <div class="kpis">
+            <div class="kpi">
+              <div class="t">Preço final de venda</div>
+              <div class="v" id="kpiVenda">—</div>
+              <div class="s" id="kpiVendaSub">—</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Lucro (R$)</div>
+              <div class="v" id="kpiLucro">—</div>
+              <div class="s" id="kpiLucroSub">—</div>
+            </div>
+            <div class="kpi">
+              <div class="t">Markup sobre a base</div>
+              <div class="v" id="kpiMarkup">—</div>
+              <div class="s" id="kpiMarkupSub">—</div>
+            </div>
+          </div>
+
+          <table aria-label="Detalhamento">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th class="r">%</th>
+                <th class="r">Valor</th>
+              </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+          </table>
+
+          <div>
+            <div class="help" style="text-transform:uppercase; letter-spacing:.35px; margin-bottom:8px;">
+              Produtos salvos
+            </div>
+            <div class="list" id="lista"></div>
+            <div class="help" style="margin-top:8px;">
+              Clique em um produto para carregar. Os dados ficam somente no seu navegador.
+            </div>
+            <div class="notice" id="avisos" data-kind="danger" hidden></div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div class="mini">
+        Destaque: <b>V9 Informática Ltda</b> • <b>(37) 4141-0341</b>
+      </div>
+      <a class="btn secondary" href="tel:+553741410341">Falar com a V9</a>
+    </footer>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "precovenda.v1";
+    const SCHEMA_VERSION = 2;
+
+    function toNumber(text) {
+      if (typeof text !== "string") return 0;
+      let cleaned = text.trim().replace(/[^\d.,-]/g, "");
+      const hasComma = cleaned.includes(",");
+      const hasDot = cleaned.includes(".");
+      if (hasComma && hasDot) {
+        cleaned = cleaned.replace(/\./g, "").replace(",", ".");
+      } else if (hasComma) {
+        cleaned = cleaned.replace(",", ".");
+      } else {
+        cleaned = cleaned.replace(/,/g, "");
+      }
+      const value = Number.parseFloat(cleaned);
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function clampPercent(value) {
+      if (!Number.isFinite(value)) return 0;
+      if (value < 0) return 0;
+      if (value > 100) return 100;
+      return value;
+    }
+
+    function fmtCurrency(value) {
+      const v = Number.isFinite(value) ? value : 0;
+      return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(v);
+    }
+
+    function fmtPercent(value) {
+      const v = Number.isFinite(value) ? value : 0;
+      return new Intl.NumberFormat("pt-BR", {
+        style: "percent",
+        maximumFractionDigits: 2,
+      }).format(v / 100);
+    }
+
+    function fmtInputNumber(value) {
+      const v = Number.isFinite(value) ? value : 0;
+      return new Intl.NumberFormat("pt-BR", {
+        useGrouping: false,
+        maximumFractionDigits: 2,
+      }).format(v);
+    }
+
+    function uuid() {
+      if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+      return "id-" + Math.random().toString(16).slice(2) + "-" + Date.now();
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    const el = {
+      produtoNome: document.getElementById("produtoNome"),
+      produtoSku: document.getElementById("produtoSku"),
+      custo: document.getElementById("custo"),
+      fixas: document.getElementById("fixas"),
+      variaveis: document.getElementById("variaveis"),
+      impostos: document.getElementById("impostos"),
+      lucro: document.getElementById("lucro"),
+      pagamento: document.getElementById("pagamento"),
+      taxaDebito: document.getElementById("taxaDebito"),
+      taxaCredito: document.getElementById("taxaCredito"),
+      taxaParcelado: document.getElementById("taxaParcelado"),
+      obs: document.getElementById("obs"),
+      status: document.getElementById("status"),
+      avisos: document.getElementById("avisos"),
+      kpiVenda: document.getElementById("kpiVenda"),
+      kpiVendaSub: document.getElementById("kpiVendaSub"),
+      kpiLucro: document.getElementById("kpiLucro"),
+      kpiLucroSub: document.getElementById("kpiLucroSub"),
+      kpiMarkup: document.getElementById("kpiMarkup"),
+      kpiMarkupSub: document.getElementById("kpiMarkupSub"),
+      tabela: document.getElementById("tabela"),
+      lista: document.getElementById("lista"),
+      btnNovo: document.getElementById("btnNovo"),
+      btnSalvar: document.getElementById("btnSalvar"),
+      btnExcluir: document.getElementById("btnExcluir"),
+    };
+
+    const emptyState = () => ({ schemaVersion: SCHEMA_VERSION, selectedId: null, order: [], products: {} });
+    let state = emptyState();
+
+    function migrateState(parsed) {
+      const incoming = parsed && typeof parsed === "object" ? parsed : {};
+      const incomingVersion = Number.isFinite(Number(incoming.schemaVersion)) ? Number(incoming.schemaVersion) : 1;
+      if (incomingVersion >= SCHEMA_VERSION) return incoming;
+
+      const next = { ...incoming, schemaVersion: SCHEMA_VERSION };
+      const products = next.products && typeof next.products === "object" ? next.products : {};
+
+      Object.keys(products).forEach((id) => {
+        const p = products[id];
+        if (!p || typeof p !== "object") return;
+
+        const custo = Math.max(0, toNumber(p.custo ?? ""));
+        const fixasRaw = typeof p.fixas === "string" ? p.fixas.trim() : "";
+        const variaveisRaw = typeof p.variaveis === "string" ? p.variaveis.trim() : "";
+        const fixasCurrency = Math.max(0, toNumber(fixasRaw));
+        const variaveisCurrency = Math.max(0, toNumber(variaveisRaw));
+
+        const fixasPct = custo > 0 && fixasRaw ? Math.max(0, (fixasCurrency / custo) * 100) : 0;
+        const variaveisPct = custo > 0 && variaveisRaw ? Math.max(0, (variaveisCurrency / custo) * 100) : 0;
+
+        products[id] = {
+          ...p,
+          fixas: fixasRaw ? fmtInputNumber(fixasPct) : "",
+          variaveis: variaveisRaw ? fmtInputNumber(variaveisPct) : "",
+        };
+      });
+
+      next.products = products;
+      return next;
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return emptyState();
+        const parsedRaw = JSON.parse(raw);
+        const incomingVersion = Number.isFinite(Number(parsedRaw?.schemaVersion)) ? Number(parsedRaw.schemaVersion) : 1;
+        const parsed = migrateState(parsedRaw);
+        if (!parsed || typeof parsed !== "object") return emptyState();
+        const nextState = {
+          ...emptyState(),
+          ...parsed,
+          order: Array.isArray(parsed.order) ? parsed.order : [],
+          products:
+            parsed.products && typeof parsed.products === "object" ? parsed.products : {},
+        };
+        if (incomingVersion < SCHEMA_VERSION) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+        }
+        return nextState;
+      } catch {
+        return emptyState();
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function currentFeePercent() {
+      const payment = el.pagamento.value;
+      if (payment === "debito") return clampPercent(toNumber(el.taxaDebito.value));
+      if (payment === "credito") return clampPercent(toNumber(el.taxaCredito.value));
+      if (payment === "parcelado") return clampPercent(toNumber(el.taxaParcelado.value));
+      return 0;
+    }
+
+    function compute() {
+      const custo = Math.max(0, toNumber(el.custo.value));
+      const fixas = Math.max(0, toNumber(el.fixas.value));
+      const variaveis = Math.max(0, toNumber(el.variaveis.value));
+      const impostos = clampPercent(toNumber(el.impostos.value));
+      const lucro = clampPercent(toNumber(el.lucro.value));
+      const taxaPagamento = currentFeePercent();
+
+      const vFixas = custo * (fixas / 100);
+      const vVariaveis = custo * (variaveis / 100);
+      const base = custo + vFixas + vVariaveis;
+      const totalPercent = impostos + lucro + taxaPagamento;
+
+      const warnings = [];
+      if (custo <= 0) warnings.push("Informe o preço de custo para calcular.");
+      if (totalPercent >= 100)
+        warnings.push("A soma de percentuais (taxas + impostos + lucro) não pode ser 100% ou mais.");
+
+      let venda = 0;
+      if (base > 0 && totalPercent < 100) venda = base / (1 - totalPercent / 100);
+
+      const vTaxa = venda * (taxaPagamento / 100);
+      const vImpostos = venda * (impostos / 100);
+      const vLucro = venda * (lucro / 100);
+      const markup = base > 0 ? ((venda - base) / base) * 100 : 0;
+      const net = venda - vTaxa - vImpostos - vLucro;
+
+      render({ custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercent, vTaxa, vImpostos, vLucro, markup, net, warnings });
+    }
+
+    function render(data) {
+      const { custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercent, vTaxa, vImpostos, vLucro, markup, net, warnings } = data;
+
+      el.kpiVenda.textContent = venda > 0 ? fmtCurrency(venda) : "—";
+      el.kpiVendaSub.textContent = venda > 0 ? `Total %: ${fmtPercent(totalPercent)}` : "—";
+      el.kpiLucro.textContent = venda > 0 ? fmtCurrency(vLucro) : "—";
+      el.kpiLucroSub.textContent = venda > 0 ? `Margem: ${fmtPercent(lucro)}` : "—";
+      el.kpiMarkup.textContent = venda > 0 ? fmtPercent(markup) : "—";
+      el.kpiMarkupSub.textContent = venda > 0 ? `Base: ${fmtCurrency(base)}` : "—";
+
+      const rows = [
+        ["Preço de custo", "—", fmtCurrency(custo)],
+        ["Despesas fixas", fmtPercent(fixas), fmtCurrency(vFixas)],
+        ["Despesas variáveis", fmtPercent(variaveis), fmtCurrency(vVariaveis)],
+        ["Base (custo + despesas)", "—", fmtCurrency(base)],
+        ["Taxa de pagamento", fmtPercent(taxaPagamento), fmtCurrency(vTaxa)],
+        ["Impostos federais", fmtPercent(impostos), fmtCurrency(vImpostos)],
+        ["Lucro desejado", fmtPercent(lucro), fmtCurrency(vLucro)],
+        ["Preço final de venda", "—", fmtCurrency(venda)],
+      ];
+      el.tabela.innerHTML = rows
+        .map(
+          (r) => `<tr><td class="mono">${escapeHtml(r[0])}</td><td class="r mono">${escapeHtml(r[1])}</td><td class="r mono">${escapeHtml(r[2])}</td></tr>`
+        )
+        .join("");
+
+      const ok = venda > 0 && warnings.length === 0 && Math.abs(net - base) < 0.02;
+      el.status.dataset.kind = ok ? "ok" : warnings.length ? "danger" : "ok";
+      el.status.textContent = ok
+        ? `Cálculo OK: venda − (taxas + impostos + lucro) = ${fmtCurrency(net)} (≈ base ${fmtCurrency(base)}).`
+        : warnings.length
+          ? warnings[0]
+          : "Preencha os campos para ver o cálculo.";
+
+      if (warnings.length) {
+        el.avisos.hidden = false;
+        el.avisos.textContent = warnings.join(" ");
+      } else {
+        el.avisos.hidden = true;
+        el.avisos.textContent = "";
+      }
+    }
+
+    function getFormData() {
+      return {
+        nome: el.produtoNome.value.trim(),
+        sku: el.produtoSku.value.trim(),
+        custo: el.custo.value,
+        fixas: el.fixas.value,
+        variaveis: el.variaveis.value,
+        impostos: el.impostos.value,
+        lucro: el.lucro.value,
+        pagamento: el.pagamento.value,
+        taxaDebito: el.taxaDebito.value,
+        taxaCredito: el.taxaCredito.value,
+        taxaParcelado: el.taxaParcelado.value,
+        obs: el.obs.value,
+        updatedAt: new Date().toISOString(),
+      };
+    }
+
+    function setFormData(p) {
+      el.produtoNome.value = p?.nome ?? "";
+      el.produtoSku.value = p?.sku ?? "";
+      el.custo.value = p?.custo ?? "";
+      el.fixas.value = p?.fixas ?? "";
+      el.variaveis.value = p?.variaveis ?? "";
+      el.impostos.value = p?.impostos ?? "";
+      el.lucro.value = p?.lucro ?? "";
+      el.pagamento.value = p?.pagamento ?? "pix";
+      el.taxaDebito.value = p?.taxaDebito ?? "";
+      el.taxaCredito.value = p?.taxaCredito ?? "";
+      el.taxaParcelado.value = p?.taxaParcelado ?? "";
+      el.obs.value = p?.obs ?? "";
+    }
+
+    function renderList() {
+      const items = state.order.map((id) => ({ id, p: state.products[id] })).filter((x) => x.p);
+      if (items.length === 0) {
+        el.lista.innerHTML = '<div class="help">Nenhum produto salvo ainda. Preencha os campos e clique em Salvar.</div>';
+        return;
+      }
+      el.lista.innerHTML = items
+        .map(({ id, p }) => {
+          const title = p.nome ? p.nome : "(Sem nome)";
+          const sku = p.sku ? `SKU: ${p.sku}` : "SKU: —";
+          const current = id === state.selectedId ? "true" : "false";
+          return `<div class="item" role="button" tabindex="0" aria-current="${current}" data-id="${escapeHtml(id)}"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(sku)}</span></div>`;
+        })
+        .join("");
+      el.lista.querySelectorAll(".item").forEach((node) => {
+        const id = node.getAttribute("data-id");
+        node.addEventListener("click", () => selectProduct(id));
+        node.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            selectProduct(id);
+          }
+        });
+      });
+    }
+
+    function selectProduct(id) {
+      state.selectedId = id;
+      const p = state.products[id];
+      if (p) setFormData(p);
+      renderList();
+      saveState();
+      compute();
+    }
+
+    function newProduct() {
+      state.selectedId = null;
+      setFormData({});
+      renderList();
+      saveState();
+      compute();
+    }
+
+    function saveProduct() {
+      const data = getFormData();
+      const id = state.selectedId ?? uuid();
+      const exists = Boolean(state.products[id]);
+      state.products[id] = { ...state.products[id], ...data, createdAt: state.products[id]?.createdAt ?? new Date().toISOString() };
+      if (!exists) state.order.unshift(id);
+      state.selectedId = id;
+      saveState();
+      renderList();
+      compute();
+      el.status.dataset.kind = "ok";
+      el.status.textContent = "Produto salvo localmente com sucesso.";
+    }
+
+    function deleteProduct() {
+      const id = state.selectedId;
+      if (!id || !state.products[id]) {
+        el.status.dataset.kind = "danger";
+        el.status.textContent = "Nenhum produto selecionado para excluir.";
+        return;
+      }
+      const name = state.products[id]?.nome ? `“${state.products[id].nome}”` : "este produto";
+      if (!confirm(`Excluir ${name}? Essa ação remove apenas do seu navegador.`)) return;
+      delete state.products[id];
+      state.order = state.order.filter((x) => x !== id);
+      state.selectedId = null;
+      saveState();
+      setFormData({});
+      renderList();
+      compute();
+      el.status.dataset.kind = "ok";
+      el.status.textContent = "Produto excluído.";
+    }
+
+    function wireInputs() {
+      const ids = ["produtoNome", "produtoSku", "custo", "fixas", "variaveis", "impostos", "lucro", "pagamento", "taxaDebito", "taxaCredito", "taxaParcelado", "obs"];
+      ids.forEach((id) => {
+        const node = document.getElementById(id);
+        const ev = node.tagName === "SELECT" ? "change" : "input";
+        node.addEventListener(ev, () => compute());
+      });
+      el.btnNovo.addEventListener("click", () => newProduct());
+      el.btnSalvar.addEventListener("click", () => saveProduct());
+      el.btnExcluir.addEventListener("click", () => deleteProduct());
+    }
+
+    state = loadState();
+    wireInputs();
+    renderList();
+    if (state.selectedId && state.products[state.selectedId]) setFormData(state.products[state.selectedId]);
+    compute();
+  </script>
+</body>
+
+</html>

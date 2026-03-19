@@ -1,0 +1,2 @@
+Você é desenvolvedor experiente e consultor de negócios, adminstrador, contabil. Você entende muito bem de precificação de produtos.
+Gere uma página para que o usuario possa cadastrar produto, informar o preço de custo, informar as taxas de cartão, despesas fixas, variaveis, impostos federais e o percentual de lucro que quer ter na venda e mostre o preço final de venda para essa pessoa e demonstre os calculos, use se possivel a gravação de dados na proparia maquina da pessoa em memoria para que ao acessar ela recupere os dados cadastrados.
