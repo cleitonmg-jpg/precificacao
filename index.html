@@ -494,7 +494,7 @@
           </div>
           <div class="row">
             <label>
-              Lucro desejado (%) <span class="help">(margem sobre a venda)</span>
+              Lucro desejado (%) <span class="help">(markup sobre o custo+despesas)</span>
               <input id="lucro" type="text" inputmode="decimal" placeholder="0" list="pctSug" />
             </label>
             <label>
@@ -782,32 +782,37 @@
       const vFixas = custo * (fixas / 100);
       const vVariaveis = custo * (variaveis / 100);
       const base = custo + vFixas + vVariaveis;
-      const totalPercent = impostos + lucro + taxaPagamento;
+
+      // Lucro é markup sobre a base (custo + despesas), não margem sobre venda
+      const vLucro = base * (lucro / 100);
+      const baseComLucro = base + vLucro;
+
+      // Impostos e taxa de pagamento são % sobre o preço de venda
+      const totalPercentSobreVenda = impostos + taxaPagamento;
 
       const warnings = [];
       if (custo <= 0) warnings.push("Informe o preço de custo para calcular.");
-      if (totalPercent >= 100)
-        warnings.push("A soma de percentuais (taxas + impostos + lucro) não pode ser 100% ou mais.");
+      if (totalPercentSobreVenda >= 100)
+        warnings.push("A soma de impostos + taxa de pagamento não pode ser 100% ou mais.");
 
       let venda = 0;
-      if (base > 0 && totalPercent < 100) venda = base / (1 - totalPercent / 100);
+      if (base > 0 && totalPercentSobreVenda < 100) venda = baseComLucro / (1 - totalPercentSobreVenda / 100);
 
       const vTaxa = venda * (taxaPagamento / 100);
       const vImpostos = venda * (impostos / 100);
-      const vLucro = venda * (lucro / 100);
       const markup = base > 0 ? ((venda - base) / base) * 100 : 0;
       const net = venda - vTaxa - vImpostos - vLucro;
 
-      render({ custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercent, vTaxa, vImpostos, vLucro, markup, net, warnings });
+      render({ custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercentSobreVenda, vTaxa, vImpostos, vLucro, markup, net, warnings });
     }
 
     function render(data) {
-      const { custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercent, vTaxa, vImpostos, vLucro, markup, net, warnings } = data;
+      const { custo, fixas, variaveis, vFixas, vVariaveis, base, venda, impostos, lucro, taxaPagamento, totalPercentSobreVenda, vTaxa, vImpostos, vLucro, markup, net, warnings } = data;
 
       el.kpiVenda.textContent = venda > 0 ? fmtCurrency(venda) : "—";
-      el.kpiVendaSub.textContent = venda > 0 ? `Total %: ${fmtPercent(totalPercent)}` : "—";
+      el.kpiVendaSub.textContent = venda > 0 ? `Impostos+Taxa: ${fmtPercent(totalPercentSobreVenda)}` : "—";
       el.kpiLucro.textContent = venda > 0 ? fmtCurrency(vLucro) : "—";
-      el.kpiLucroSub.textContent = venda > 0 ? `Margem: ${fmtPercent(lucro)}` : "—";
+      el.kpiLucroSub.textContent = venda > 0 ? `Markup: ${fmtPercent(lucro)} sobre base` : "—";
       el.kpiMarkup.textContent = venda > 0 ? fmtPercent(markup) : "—";
       el.kpiMarkupSub.textContent = venda > 0 ? `Base: ${fmtCurrency(base)}` : "—";
 
@@ -830,7 +835,7 @@
       const ok = venda > 0 && warnings.length === 0 && Math.abs(net - base) < 0.02;
       el.status.dataset.kind = ok ? "ok" : warnings.length ? "danger" : "ok";
       el.status.textContent = ok
-        ? `Cálculo OK: venda − (taxas + impostos + lucro) = ${fmtCurrency(net)} (≈ base ${fmtCurrency(base)}).`
+        ? `Cálculo OK — Custo ${fmtCurrency(base)} + Lucro ${fmtCurrency(vLucro)} + Impostos ${fmtCurrency(vImpostos)} + Taxa ${fmtCurrency(vTaxa)} = ${fmtCurrency(venda)}`
         : warnings.length
           ? warnings[0]
           : "Preencha os campos para ver o cálculo.";
